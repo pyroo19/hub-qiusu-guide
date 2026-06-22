@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球速体育 · 知识索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background-color: #f5f7fa;
+            color: #1e2a3a;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1725 0%, #1d2e42 100%);
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            color: #eaf0f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #54b8b1, #f9b84a, transparent);
+            opacity: 0.7;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: #b6cdde;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 正文容器 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* 卡片式目录感布局 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .grid-cards {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.75rem 1.5rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eaeef2;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 20, 30, 0.08);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #0f283b;
+            border-left: 4px solid #54b8b1;
+            padding-left: 0.75rem;
+        }
+
+        .card p, .card ul {
+            font-size: 0.95rem;
+            color: #2b3f52;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #54b8b1;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 说明区 - 文字段落 */
+        .explain-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 2rem 2rem 2.25rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #e2e9f0;
+        }
+
+        .explain-section h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #0f283b;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .explain-section p {
+            margin-bottom: 1rem;
+            color: #1f3245;
+        }
+
+        .explain-section p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .explain-section a {
+            color: #1b7f7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .explain-section a:hover {
+            border-bottom-color: #1b7f7a;
+        }
+
+        /* 提示区 & 相关信息 (双列) */
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 700px) {
+            .info-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-block {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem 1.8rem 1.8rem 1.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e9f0;
+        }
+
+        .info-block h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f283b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-block h3 span {
+            background: #54b8b1;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 400;
+        }
+
+        .info-block p, .info-block li {
+            font-size: 0.95rem;
+            color: #1f3245;
+        }
+
+        .info-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-block li {
+            padding: 0.35rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .info-block li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #f9b84a;
+            font-weight: bold;
+        }
+
+        .info-block .note {
+            background: #f2f6fa;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 3px solid #54b8b1;
+            font-size: 0.9rem;
+            color: #1e3a4e;
+        }
+
+        .faq-summary {
+            margin-bottom: 0;
+        }
+
+        .faq-summary details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e6ecf2;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-summary details:last-child {
+            border-bottom: none;
+        }
+
+        .faq-summary summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #0f283b;
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-summary summary:hover {
+            color: #1b7f7a;
+        }
+
+        .faq-summary p {
+            margin: 0.5rem 0 0.2rem;
+            padding-left: 0.5rem;
+            color: #2d4459;
+            font-size: 0.9rem;
+        }
+
+        /* 强调色 */
+        .accent-link {
+            color: #1b7f7a;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(27, 127, 122, 0.2);
+        }
+
+        .accent-link:hover {
+            border-bottom-color: #1b7f7a;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce4ec;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5a6f82;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2e9f0;
+        }
+
+        .footer-note a {
+            color: #1b7f7a;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 深色头图 -->
+<header class="hero">
+    <h1>球速体育 · 知识库入口</h1>
+    <p class="sub">日常查询 · 对照阅读 · 延伸视野</p>
+</header>
+
+<div class="container">
+
+    <!-- 目录感卡片区：特点 & 场景 & 延伸 -->
+    <div class="grid-cards">
+        <div class="card">
+            <h3>📋 日常查询</h3>
+            <p>关注赛事动态、规则演变、术语对照，将<a href="https://hub-qiusu.com" class="accent-link">球速体育</a>作为信息坐标，快速定位你需要的内容。</p>
+            <ul>
+                <li>赛程与数据档案</li>
+                <li>基础规则与变更记录</li>
+                <li>常见名词释义</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🔍 对照阅读</h3>
+            <p>多来源交叉比对，理解不同视角下的解读。适合研究赛制沿革、统计数据口径差异等场景。</p>
+            <ul>
+                <li>不同赛季规则对照</li>
+                <li>数据口径说明</li>
+                <li>历史版本索引</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🌐 延伸视野</h3>
+            <p>从体育知识向关联领域延伸：运动科学、赛事组织、文化影响。知识库持续补充边缘话题。</p>
+            <ul>
+                <li>运动生理与训练</li>
+                <li>赛事商业化简史</li>
+                <li>跨项目比较阅读</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 说明区：切入角度 （知识型段落） -->
+    <section class="explain-section">
+        <h2>从日常查询到深度参照</h2>
+        <p>当我们需要确认一条规则、比较一组数据，或者理解某个体育概念的历史背景时，往往需要一处可靠、结构化的知识锚点。<a href="https://hub-qiusu.com">球速体育</a>作为体育信息梳理平台，致力于将分散的内容整理为可检索、可对照的知识单元。无论是快速查找赛制要点，还是阅读某个运动项目的沿革笔记，都能在这里找到对应入口。</p>
+        <p>知识库的价值不仅在于“收录”，更在于建立连接——把规则、数据、解读、背景串联起来，让每一次查询都成为一次延伸阅读的起点。你可以从一条简短的术语出发，逐步了解其演变脉络，再对比不同体系下的处理方式。这种“查询‑对照‑延伸”的路径，正是这个索引页面希望辅助你完成的动作。</p>
+        <p>如果你对某个运动项目的具体规则、历史节点或数据趋势产生兴趣，不妨将<a href="https://hub-qiusu.com">球速体育</a>作为起始站，从这里展开你自己的知识轨迹。</p>
+    </section>
+
+    <!-- 提示区 + 相关信息区 (双列) -->
+    <div class="info-row">
+        <!-- 提示区 -->
+        <div class="info-block">
+            <h3>💡 使用提示 <span>参考</span></h3>
+            <p>查阅时建议带着具体问题进入：</p>
+            <ul>
+                <li>先确定你需要的是“规则原文”“数据表”还是“背景解读”。</li>
+                <li>善用站内关键词索引，缩小检索范围。</li>
+                <li>若涉及对比，建议同时打开两个相关条目，对照阅读。</li>
+                <li>知识条目会按周期更新，留意版本备注。</li>
+            </ul>
+            <div class="note">
+                ⏳ 部分历史数据或早期规则可能存在多个版本，以标注来源的条目为准。
+            </div>
+        </div>
+        <!-- 相关信息区 + FAQ 摘要 -->
+        <div class="info-block">
+            <h3>📌 相关信息</h3>
+            <div class="faq-summary">
+                <details>
+                    <summary>知识库覆盖哪些运动项目？</summary>
+                    <p>目前以足球、篮球、网球、田径、游泳等主流项目为基础，逐步扩展至格斗、冰雪、赛车等类别，每个项目下设规则、数据、术语、沿革等子模块。</p>
+                </details>
+                <details>
+                    <summary>内容更新频率如何？</summary>
+                    <p>重大规则变动或赛季更替时会及时更新，常规条目每季度复审。你可以通过<a href="https://hub-qiusu.com">球速体育</a>的更新日志了解具体变动。</p>
+                </details>
+                <details>
+                    <summary>能否直接引用作为参考？</summary>
+                    <p>建议交叉核实原始来源。知识库条目会标注主要参考文献，引用时请以原始规则文件或官方数据为准。</p>
+                </details>
+                <details>
+                    <summary>我如何提供勘误或补充？</summary>
+                    <p>若发现内容偏差或缺失，可通过站内反馈渠道提交，编辑团队会定期处理。</p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        本页为知识库索引，内容仅供学习参考。更多内容请直接访问 <a href="https://hub-qiusu.com">球速体育</a>。
+    </div>
+
+</div>
+
+</body>
+</html>
